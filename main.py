@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 
@@ -24,3 +26,7 @@ Base.metadata.create_all(bind = engine)
 def read_root():
     # return {'Hello': 'World'}
     return HTMLResponse('<h2> Hola Mundo! </h2>')
+
+if __name__=='__main__':
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
